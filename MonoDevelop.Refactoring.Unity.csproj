@@ -77,4 +77,7 @@
     <Compile Include="MonoDevelop.Refactoring.Unity\FileOperationsOptionsPanel.cs" />
     <Compile Include="gtk-gui\MonoDevelop.Refactoring.Unity.FileOperationsOptionsWidget.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="addin-project.xml" />
+  </ItemGroup>
 </Project>

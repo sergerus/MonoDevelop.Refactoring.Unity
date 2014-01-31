@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<AddinProject appVersion="4.2.3">
+	<Project>
+		<AddinFile>bin/Debug/MonoDevelop.Refactoring.Unity.dll</AddinFile>
+		<BuildFile>MonoDevelop.Refactoring.Unity.sln</BuildFile>
+		<BuildConfiguration>Debug</BuildConfiguration>
+	</Project>
+</AddinProject>
