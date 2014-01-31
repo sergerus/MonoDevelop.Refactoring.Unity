@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Addin id = "MonoDevelop.Refactoring.Unity"
        name        = "MonoDevelop.Refactoring.Unity"
-       author      = "Sergei Makarov"
+       author      = "makarov@alternativaplatform.com"
        copyright   = "X11"
-       url         = ""
-       description = ""
+       url         = "https://github.com/sergerus/MonoDevelop.Refactoring.Unity"
+       description = "Tracks file operations and handle Unity3d meta files."
        category    = "IDE extensions"
        version     = "4.2.3">
 
@@ -17,9 +17,9 @@
 		<Class class="MonoDevelop.Refactoring.Unity.FileOperationsHandler" insertafter="FinalStep" />
 	</Extension>
 
-	<Extension path = "/MonoDevelop/Ide/GlobalOptionsDialog/Projects">
-		<Section id = "Unity" label = "Unity">
-			<Panel id = "FileOperationsHandler" label = "FileOperationsHandler" fill="true" class="MonoDevelop.Refactoring.Unity.FileOperationsOptionsPanel" />
+	<Extension path = "/MonoDevelop/Ide/GlobalOptionsDialog/Other">
+		<Section id="Unity3d" _label="Unity3d">
+			<Section id = "FileOperationsOptionsPanel" _label = "File Operations" class="MonoDevelop.Refactoring.Unity.FileOperationsOptionsPanel" />
 		</Section>
 	</Extension>
 </Addin>

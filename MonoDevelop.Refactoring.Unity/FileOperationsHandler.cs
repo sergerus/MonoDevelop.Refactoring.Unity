@@ -11,76 +11,98 @@ namespace MonoDevelop.Refactoring.Unity
 
 		public override bool CanHandlePath (FilePath path, bool isDirectory)
 		{
-			Console.WriteLine ("CanHandlePath: path=" + path + ", isDirectory=" + isDirectory);
-			if (isDirectory && !FileOperationsOptions.TrackDirectories)
-				return false;
-			if (!isDirectory && !FileOperationsOptions.TrackFiles)
-				return false;
-			return File.Exists (GetMetaPathForFile (path));
+			return true;
 		}
 
 		public override void CopyFile (FilePath source, FilePath dest, bool overwrite)
 		{
-			Console.WriteLine ("CopyFile: source=" + source + ", dest=" + dest + ", overwrite=" + overwrite);
+			LoggingService.LogDebug ("MonoDevelop.Refactoring.Unity.FileOperationsHandler.CopyFile: source=" + source + ", dest=" + dest + ", overwrite=" + overwrite);
 			base.CopyFile (source, dest, overwrite);
-			if (FileOperationsOptions.TrackCopy)
-				File.Copy (GetMetaPathForFile (source), GetMetaPathForFile (dest));
+			if (FileOperationsOptions.TrackFiles && FileOperationsOptions.TrackCopy) {
+				string srcMeta = GetMetaPathForFile (source);
+				if (File.Exists (srcMeta)) {
+					File.Copy (srcMeta, GetMetaPathForFile (dest));
+				}
+			}
 		}
 
 		public override void RenameFile (FilePath file, string newName)
 		{
-			Console.WriteLine ("RenameFile: file=" + file + ", newName=" + newName);
+			LoggingService.LogDebug ("MonoDevelop.Refactoring.Unity.FileOperationsHandler.RenameFile: file=" + file + ", newName=" + newName);
 			base.RenameFile (file, newName);
-			if (FileOperationsOptions.TrackRename)
-				File.Move (GetMetaPathForFile (file), GetMetaPathForFile (file.ParentDirectory.Combine (newName)));
+			if (FileOperationsOptions.TrackFiles && FileOperationsOptions.TrackRename) {
+				string srcMeta = GetMetaPathForFile (file);
+				if (File.Exists (srcMeta)) {
+					File.Move (srcMeta, GetMetaPathForFile (file.ParentDirectory.Combine (newName)));
+				}
+			}
 		}
 
 		public override void MoveFile (FilePath source, FilePath dest)
 		{
-			Console.WriteLine ("MoveFile: source=" + source + ", dest=" + dest);
+			LoggingService.LogDebug ("MonoDevelop.Refactoring.Unity.FileOperationsHandler.MoveFile: source=" + source + ", dest=" + dest);
 			base.MoveFile (source, dest);
-			if (FileOperationsOptions.TrackMove)
-				File.Move (GetMetaPathForFile (source), GetMetaPathForFile (dest));
+			if (FileOperationsOptions.TrackFiles && FileOperationsOptions.TrackMove) {
+				string srcMeta = GetMetaPathForFile (source);
+				if (File.Exists (srcMeta)) {
+					File.Move (srcMeta, GetMetaPathForFile (dest));
+				}
+			}
 		}
 
 		public override void DeleteFile (FilePath file)
 		{
-			Console.WriteLine ("DeleteFile: file=" + file);
+			LoggingService.LogDebug ("MonoDevelop.Refactoring.Unity.FileOperationsHandler.DeleteFile: file=" + file);
 			base.DeleteFile (file);
-			if (FileOperationsOptions.TrackDelete)
-				File.Delete (GetMetaPathForFile (file));
+			if (FileOperationsOptions.TrackFiles && FileOperationsOptions.TrackDelete) {
+				string srcMeta = GetMetaPathForFile (file);
+				if (File.Exists (srcMeta))
+					File.Delete (srcMeta);
+			}
 		}
 
 		public override void CopyDirectory (FilePath sourcePath, FilePath destPath)
 		{
-			Console.WriteLine ("CopyDirectory: sourcePath=" + sourcePath + ", destPath=" + destPath);
+			LoggingService.LogDebug ("MonoDevelop.Refactoring.Unity.FileOperationsHandler.CopyDirectory: sourcePath=" + sourcePath + ", destPath=" + destPath);
 			base.CopyDirectory (sourcePath, destPath);
-			if (FileOperationsOptions.TrackCopy)
-				File.Copy (GetMetaPathForFile (sourcePath), GetMetaPathForFile (destPath));
+			if (FileOperationsOptions.TrackDirectories && FileOperationsOptions.TrackCopy) {
+				string srcMeta = GetMetaPathForFile (sourcePath);
+				if (File.Exists (srcMeta))
+					File.Copy (srcMeta, GetMetaPathForFile (destPath));
+			}
 		}
 
 		public override void RenameDirectory (FilePath path, string newName)
 		{
-			Console.WriteLine ("RenameDirectory: path=" + path + ", newName=" + newName);
+			LoggingService.LogDebug ("MonoDevelop.Refactoring.Unity.FileOperationsHandler.RenameDirectory: path=" + path + ", newName=" + newName);
 			base.RenameDirectory (path, newName);
-			if (FileOperationsOptions.TrackRename)
-				File.Move (GetMetaPathForFile (path), GetMetaPathForFile (path.ParentDirectory.Combine (newName)));
+			if (FileOperationsOptions.TrackDirectories && FileOperationsOptions.TrackRename) {
+				string srcMeta = GetMetaPathForFile (path);
+				if (File.Exists (srcMeta))
+					File.Move (srcMeta, GetMetaPathForFile (path.ParentDirectory.Combine (newName)));
+			}
 		}
 
 		public override void MoveDirectory (FilePath sourcePath, FilePath destPath)
 		{
-			Console.WriteLine ("MoveDirectory: sourcePath=" + sourcePath + ", destPath=" + destPath);
+			LoggingService.LogDebug ("MonoDevelop.Refactoring.Unity.FileOperationsHandler.MoveDirectory: sourcePath=" + sourcePath + ", destPath=" + destPath);
 			base.MoveDirectory (sourcePath, destPath);
-			if (FileOperationsOptions.TrackMove)
-				File.Move (GetMetaPathForFile (sourcePath), GetMetaPathForFile (destPath));
+			if (FileOperationsOptions.TrackDirectories && FileOperationsOptions.TrackMove) {
+				string srcMeta = GetMetaPathForFile (sourcePath);
+				if (File.Exists (srcMeta))
+					File.Move (srcMeta, GetMetaPathForFile (destPath));
+			}
 		}
 
 		public override void DeleteDirectory (FilePath path)
 		{
-			Console.WriteLine ("DeleteDirectory: path=" + path);
+			LoggingService.LogDebug ("MonoDevelop.Refactoring.Unity.FileOperationsHandler.DeleteDirectory: path=" + path);
 			base.DeleteDirectory (path);
-			if (FileOperationsOptions.TrackDelete)
-				File.Delete (GetMetaPathForFile (path));
+			if (FileOperationsOptions.TrackDirectories && FileOperationsOptions.TrackDelete) {
+				string srcMeta = GetMetaPathForFile (path);
+				if (File.Exists (srcMeta))
+					File.Delete (srcMeta);
+			}
 		}
 
 		string GetMetaPathForFile (FilePath file)
