@@ -2,7 +2,7 @@
 <Addin id = "MonoDevelop.Refactoring.Unity"
        name        = "MonoDevelop.Refactoring.Unity"
        author      = "makarov@alternativaplatform.com"
-       copyright   = "X11"
+       copyright   = "Copyrigth (c) 2014 AlternativaPlatform.com"
        url         = "https://github.com/sergerus/MonoDevelop.Refactoring.Unity"
        description = "Tracks file operations and handle Unity3d meta files."
        category    = "IDE extensions"
