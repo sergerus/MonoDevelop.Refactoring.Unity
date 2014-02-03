@@ -1,0 +1,7 @@
+<AddinProject appVersion="4.0">
+	<Project platforms="Mac Linux Win32">
+		<AddinFile>bin/Debug/MonoDevelop.Refactoring.Unity.dll</AddinFile>
+		<BuildFile>MonoDevelop.Refactoring.Unity.sln</BuildFile>
+		<BuildConfiguration>Debug</BuildConfiguration>
+	</Project>
+</AddinProject>
