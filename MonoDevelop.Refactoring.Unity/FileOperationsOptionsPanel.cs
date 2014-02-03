@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using MonoDevelop.Ide.Gui.Dialogs;
 using Gtk;
 

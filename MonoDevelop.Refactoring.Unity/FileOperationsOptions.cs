@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using MonoDevelop.Core;
 
 namespace MonoDevelop.Refactoring.Unity

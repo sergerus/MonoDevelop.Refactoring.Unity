@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using MonoDevelop.Core;
 using MonoDevelop.Core.FileSystem;
 using System.IO;
